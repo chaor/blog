@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "My first post"
+title:  "2022第一篇文章"
 date: 2022-02-06 21:50:46-08:00
 categories: jekyll update
 ---
-Welcome to my first post!
+新年快乐，虎虎生威！
 
-## Here are things I will be writing about
-1. This
-2. That
-3. The other
+{% highlight python %}
+for i in range(100):
+    print('Happy new year!')
+{% endhighlight %}
