@@ -40,7 +40,7 @@ def union(x: int, y: int, parent: List[int], rank: List[int]) -> int:
     if rank[x_root] > rank[y_root]:
         parent[y_root] = x_root
     elif rank[x_root] < rank[y_root]:
-        parent[x_root] = [y_root]
+        parent[x_root] = y_root
     else:
         # 两边rank一样，随便合并
         rank[y_root] += 1
