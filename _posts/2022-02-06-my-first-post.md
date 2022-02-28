@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "2022第一篇文章"
+title:  "2022年第一篇文章"
 date: 2022-02-06 21:50:46-08:00
 categories: jekyll update
 ---
