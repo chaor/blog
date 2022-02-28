@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[算法] 二分查找只有4种情况 binary search"
-date: 2022-02-21 20:57:07-08:00
+date: 2022-02-27 18:23:56-08:00
 categories: algorithm
 ---
 搞ACM竞赛的Xuehui大神告诉我们，二分查找只有4种情况。
