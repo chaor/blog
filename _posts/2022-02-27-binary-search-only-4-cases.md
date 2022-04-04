@@ -31,3 +31,18 @@ List里面没有30的情况更简单:
 print(binary_search([10, 20, 25, 35, 40, 50], 30))
 {% endhighlight %}
 因为`target 30`不在list里，所以第6行的等号没用了，只需要看最后返回的是`left`还是`right`。跳出while循环时，`right`和`left`停在25和35。返回`left`会得到3，返回`right`会得到2。
+
+比如[2226. Maximum Candies Allocated to K Children](https://leetcode.com/problems/maximum-candies-allocated-to-k-children/)，给n堆糖果`candies`和k个孩子，每堆糖果只能拆成更小的堆但不能合并，每个孩子拿一堆糖果且要求每人拿的数量一样，求每个孩子能拿到的最大糖果数。这里有一个明显的上界`sum(candies) // k`，可以用二分来做。下界一开始设为1，因为有除法，避免除0。
+
+{% highlight python linenos %}
+class Solution:
+    def maximumCandies(self, candies: List[int], k: int) -> int:
+        left, right = 1, sum(candies) // k
+        while left <= right:
+            mid = (left + right) // 2
+            if sum(c // mid for c in candies) >= k:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return right
+{% endhighlight %}
