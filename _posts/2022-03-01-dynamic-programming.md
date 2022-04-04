@@ -33,3 +33,26 @@ class Solution:
 
         return dp[numLaps]
 {% endhighlight %}
+
+而[2218. Maximum Value of K Coins From Piles](https://leetcode.com/problems/maximum-value-of-k-coins-from-piles)就只和`dp[i-1]`有关了。从N个硬币堆栈中拿K个硬币，求最大面值。用二维`dp(i, k)`来表示前i堆里拿k个硬币的最大面值。求`dp(i, k)`时，只需要看`dp(i-1, k)`和第`i`堆的关系即可。
+
+{% highlight python linenos %}
+frin functools import lru_cache
+
+class Solution:
+    def maxValueOfCoins(self, piles: List[List[int]], k: int) -> int:
+        
+        @lru_cache(None)
+        def dp(i, k):
+            if k == 0 or i == 0:
+                return 0
+            
+            max_value, curr_pile, curr_sum = dp(i - 1, k), piles[i - 1], 0
+            for j in range(min(len(curr_pile), k)):
+                curr_sum += curr_pile[j]
+                max_value = max(max_value, curr_sum + dp(i - 1, k - j - 1))
+            return max_value
+
+        # dp(i, k) means max value for first i piles with k coins
+        return dp(len(piles), k)
+{% endhighlight %}
