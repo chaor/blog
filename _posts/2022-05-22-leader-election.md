@@ -14,4 +14,4 @@ categories: systemdesign
 - Etcd is a strongly consistent and highly available key-value store that's often used to implement leader election in a system. Etcd cannot be stored in memory/they can only be persisted in disk storage, whereas redis can be cached in ram and can also be persisted in disk.
 - ZooKeeper is a strongly consistent, highly available key-value store. It's often used to store important configuration or to perform leader election.
 
-Etcd用法是让这几个server来用etcd作为key-value store，存一个谁是leader的key，value是hostname或IP地址。正在运行的server试图把自己设为leader并不断renew lease。如果无法renew，发生一个key deletion event，其他server就会变成leader。
+Etcd提供了对象的TTL和原子性的compare-and-swap操作，所以实现选主比较容易。没有被选中的节点可以watch `/election`或某个key，如果发现为空就选自己为leader。这个值有TTL，leader必须周期性重写这个值保持选中状态。
