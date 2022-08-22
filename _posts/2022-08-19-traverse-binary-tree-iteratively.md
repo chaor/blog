@@ -42,3 +42,27 @@ class Solution:
                 stack.append((node.left, False))
         return result
 {% endhighlight %}
+
+左右子树入栈的时候判断None也可以，这样每次弹栈的元素就不用再判断None了。
+前序遍历可以更简单，因为总是先处理当前节点，不需担心访问左右子树。
+
+{% highlight python linenos %}
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        stack = [root]
+        result = []
+        while stack:
+            node = stack.pop()
+            if node is None:
+                continue
+            result.append(node.val)
+            stack.append(node.right)
+            stack.append(node.left)
+        return result
+{% endhighlight %}
